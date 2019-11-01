@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseCodeGenerator", "GenerateBaseCode\BaseCodeGenerator.csproj", "{FA17F21C-B395-469B-B375-B6C33A6BCBC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA17F21C-B395-469B-B375-B6C33A6BCBC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA17F21C-B395-469B-B375-B6C33A6BCBC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA17F21C-B395-469B-B375-B6C33A6BCBC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA17F21C-B395-469B-B375-B6C33A6BCBC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {656EF158-E006-4AC2-8199-FBD6765AA333}
+	EndGlobalSection
+EndGlobal
