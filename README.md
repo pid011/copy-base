@@ -1,2 +1,2 @@
-# GenerateBaseCode
-Copy base code into project file
+# BaseCodeGenerator
+Generate base code into project file
