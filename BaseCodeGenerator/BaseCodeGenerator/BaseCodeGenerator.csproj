@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <StartupObject></StartupObject>
     <Version>0.1.0</Version>
-    <AssemblyVersion>0.1.0.*</AssemblyVersion>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <PackageProjectUrl>https://github.com/pid011/BaseCodeGenerator</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pid011/BaseCodeGenerator</RepositoryUrl>
     <NeutralLanguage>English</NeutralLanguage>
