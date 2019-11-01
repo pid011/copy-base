@@ -9,62 +9,92 @@ namespace BaseCodeGenerator
 {
     class Program
     {
-        public const string SettingsFileName = "settings.json";
+        private const string SettingsFileName = "settings.json";
 
-        public readonly string ProgramName;
-        public readonly string Version;
-        public string BaseCodePath => Path.Combine(Directory.GetCurrentDirectory(), "BaseCode.cs");
-        public string TargetCodeFilePath { get; }
-        public string SettingsFilePath => Path.Combine(Directory.GetCurrentDirectory(), SettingsFileName);
+        private readonly string programName;
+        private readonly string version;
 
-        // private string targetFileName;
+        private ProgramSettings Settings;
+        private string SettingsFilePath => Path.Combine(Directory.GetCurrentDirectory(), SettingsFileName);
 
-        private static void Main()
+        private static async Task Main()
         {
             var program = new Program();
-            program.Run();
+            await program.Run();
         }
 
         public Program()
         {
             var assembly = Assembly.GetExecutingAssembly().GetName();
-            ProgramName = assembly.Name;
+            this.programName = assembly.Name;
             var version = assembly.Version;
-            Version = $"v{version.Major}.{version.Minor}";
+            this.version = $"v{version.Major}.{version.Minor}";
         }
 
-        public async void Run()
+        public async Task Run()
         {
             Console.WriteLine(FiggleFonts.Standard.Render("BaseCodeGenerator"));
-            Console.WriteLine($"[{ProgramName}] - {Version}");
-            for (int i = 0; i < Version.Length; i++) Console.Write('-');
+            Console.WriteLine($"[{this.programName}] - {this.version}");
+            for (int i = 0; i < this.version.Length; i++) Console.Write('-');
             Console.WriteLine();
 
-            bool check = File.Exists(SettingsFilePath);
-            ProgramSettings settings = null;
+            bool check = File.Exists(this.SettingsFilePath);
+            this.Settings = new ProgramSettings();
             if (check)
             {
-                settings = JsonConvert.DeserializeObject<ProgramSettings>(File.ReadAllText(SettingsFilePath));
+                using (StreamReader reader = File.OpenText(this.SettingsFilePath))
+                {
+                    this.Settings = (ProgramSettings)new JsonSerializer().Deserialize(reader, typeof(ProgramSettings));
+                }
             }
-            if (!check || settings is null)
+            if (!check || this.Settings is null)
             {
-                settings = SettingsDialog();
+                this.Settings = SetupProcess();
             }
 
             (bool success, string baseCode) result = await GetBaseCodeFromFileAsync();
             if (!result.success) return;
+
+            Console.WriteLine(result.baseCode);
         }
 
-        public ProgramSettings SettingsDialog()
+        private ProgramSettings SetupProcess()
         {
-            ProgramSettings settings = new ProgramSettings();
+            Console.WriteLine("You can press Ctrl + C to exit the setup.");
+            var settings = new ProgramSettings
+            {
+                BaseCodeFilePath = GetValidPathFromUser("Please enter the base code file path"),
+                TargetCodeFilePath = GetValidPathFromUser("Please enter the file path to generate the base code")
+            };
+
+            using (StreamWriter writer = File.CreateText(this.SettingsFilePath))
+            {
+                new JsonSerializer().Serialize(writer, settings);
+            }
+
             return settings;
         }
 
-        public async Task<(bool, string)> GetBaseCodeFromFileAsync()
+        private string GetValidPathFromUser(string text)
         {
-            var baseCodePath = Path.Combine(Directory.GetCurrentDirectory(), "BaseCode.cs");
-            if (!File.Exists(baseCodePath))
+            string input;
+            while (true)
+            {
+                Console.WriteLine($"{text}:");
+                input = Console.ReadLine();
+                if (!File.Exists(input))
+                {
+                    Console.WriteLine("The file path is not valid.");
+                    continue;
+                }
+                break;
+            }
+            return input;
+        }
+
+        private async Task<(bool, string)> GetBaseCodeFromFileAsync()
+        {
+            if (!File.Exists(this.Settings.BaseCodeFilePath))
             {
                 Console.WriteLine("Base code file doesn't exist.");
                 return (false, null);
@@ -74,8 +104,10 @@ namespace BaseCodeGenerator
             (bool, string) result;
             try
             {
-                using StreamReader reader = new StreamReader(new FileStream(baseCodePath, FileMode.Open, FileAccess.Read));
-                baseCode = await reader.ReadToEndAsync();
+                using (StreamReader reader = File.OpenText(this.Settings.BaseCodeFilePath))
+                {
+                    baseCode = await reader.ReadToEndAsync();
+                }
             }
             catch (Exception e)
             {
