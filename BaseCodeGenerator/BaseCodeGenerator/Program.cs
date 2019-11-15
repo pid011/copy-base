@@ -1,5 +1,7 @@
 ﻿using Figgle;
+
 using Newtonsoft.Json;
+
 using System;
 using System.IO;
 using System.Reflection;
@@ -8,7 +10,7 @@ using System.Text;
 namespace BaseCodeGenerator
 {
     //TODO: Custom I/O (Write, Read to Console)
-    class Program
+    internal class Program
     {
         private const string SettingsFileName = "settings.json";
 
@@ -145,6 +147,7 @@ namespace BaseCodeGenerator
                     case "yes":
                         chooseYes = true;
                         break;
+
                     case "n":
                     case "no":
                         chooseNo = true;
@@ -218,7 +221,7 @@ namespace BaseCodeGenerator
         }
     }
 
-    class ProgramSettings
+    internal class ProgramSettings
     {
         public string BaseCodeFilePath { get; set; }
         public string TargetCodeFilePath { get; set; }
