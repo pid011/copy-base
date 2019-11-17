@@ -1,27 +1,24 @@
-﻿using System;
+﻿using System.IO;
+using System.Threading.Tasks;
+using System.CommandLine.Builder;
+using System.CommandLine.Invocation;
+using System.CommandLine;
+using System;
 using System.Text;
-using Figgle;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using CopyBase.Settings;
 
 namespace CopyBase
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-            var figgle = FiggleFonts.Standard.Render("CopyBase");
-            Console.WriteLine(figgle);
-        }
+            var copyOption = new Option(new string[] { "-copy", "-c" }, description: "overwrite the target file into the base file.");
 
-        private static void DisplayTextLine(int repeat)
-        {
-            var builder = new StringBuilder();
-            for (int i = 0; i < repeat; i++)
-            {
-                builder.Append('=');
-            }
-
-            Console.WriteLine(builder.ToString());
+            var rootCommand = new RootCommand("You can work quickly overwrite the target file into the base file.");
+            rootCommand.Add()
         }
     }
 }
