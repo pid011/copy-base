@@ -13,21 +13,9 @@ namespace CopyBase.Commands.Alias
         public Command CreateCommand()
         {
             var command = new Command("add", description: "Add alias.");
-            var aliasOption = new Option(new string[] { "-alias", "-a" }, description: "Alias name")
-            {
-                Argument = new Argument<string>()
-            };
-            var baseFilePathOption = new Option(new string[] { "-base", "-b" }, description: "Base file path")
-            {
-                Argument = new Argument<string>()
-            };
-            var targetFilePathOption = new Option(new string[] { "-target", "-t" }, description: "Target file path")
-            {
-                Argument = new Argument<string>()
-            };
-            command.AddOption(aliasOption);
-            command.AddOption(baseFilePathOption);
-            command.AddOption(targetFilePathOption);
+            command.AddArgument(new Argument<string>("alias"));
+            command.AddArgument(new Argument<string>("base-file-path"));
+            command.AddArgument(new Argument<string>("target-file-path"));
             command.Handler = CommandHandler.Create<string, string, string>(HandleSetupCommand);
 
             return command;
