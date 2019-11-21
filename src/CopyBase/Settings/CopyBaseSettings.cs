@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
-using System;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace CopyBase.Settings
 {
@@ -33,6 +33,15 @@ namespace CopyBase.Settings
         {
             public string BaseFilePath { get; set; }
             public string TargetFilePath { get; set; }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder output = new StringBuilder();
+            output.AppendLine($"[{Alias}]");
+            output.AppendLine($"\tBase file path: {Element.BaseFilePath}");
+            output.AppendLine($"\tTarget file path: {Element.TargetFilePath}");
+            return output.ToString();
         }
     }
 }

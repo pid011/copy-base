@@ -1,6 +1,8 @@
-﻿using System;
+﻿using CopyBase.Settings;
+using System;
 using System.Collections.Generic;
 using System.CommandLine;
+using System.CommandLine.Invocation;
 using System.Text;
 
 namespace CopyBase.Commands.Alias
@@ -9,7 +11,18 @@ namespace CopyBase.Commands.Alias
     {
         public Command CreateCommand()
         {
-            throw new NotImplementedException();
+            var command = new Command("list", description: "Show alias list.");
+            command.Handler = CommandHandler.Create(HandleSetupCommand);
+            return command;
+        }
+
+        private int HandleSetupCommand()
+        {
+            CopyBaseSettings.LoadFromFile();
+            StringBuilder aliasesOuput = new StringBuilder();
+            CopyBaseSettings.Items.ForEach(item => aliasesOuput.AppendLine(item.ToString()));
+            Console.WriteLine(aliasesOuput.ToString());
+            return 0;
         }
     }
 }
