@@ -9,7 +9,7 @@ namespace CopyBase.Commands.Alias
 {
     class AliasListCommand : ICommand
     {
-        public Command CreateCommand()
+        public Command GetCommand()
         {
             var command = new Command("list", description: "Show alias list.");
             command.Handler = CommandHandler.Create(HandleSetupCommand);

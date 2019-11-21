@@ -7,6 +7,6 @@ namespace CopyBase.Commands
 {
     interface ICommand
     {
-        public Command CreateCommand();
+        public Command GetCommand();
     }
 }

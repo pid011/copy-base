@@ -9,7 +9,7 @@ namespace CopyBase.Commands
 {
     class CopyCommand : ICommand
     {
-        public Command CreateCommand()
+        public Command GetCommand()
         {
             var command = new Command("copy");
             command.AddArgument(new Argument<string>("alias"));

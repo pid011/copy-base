@@ -8,12 +8,12 @@ namespace CopyBase.Commands
 {
     class AliasCommand : ICommand
     {
-        public Command CreateCommand()
+        public Command GetCommand()
         {
             var command = new Command("alias");
-            command.AddCommand(new AliasAddCommand().CreateCommand());
-            command.AddCommand(new AliasRemoveCommand().CreateCommand());
-            command.AddCommand(new AliasListCommand().CreateCommand());
+            command.AddCommand(new AliasAddCommand().GetCommand());
+            command.AddCommand(new AliasRemoveCommand().GetCommand());
+            command.AddCommand(new AliasListCommand().GetCommand());
 
             return command;
         }

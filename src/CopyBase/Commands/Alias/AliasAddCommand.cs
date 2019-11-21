@@ -10,7 +10,7 @@ namespace CopyBase.Commands.Alias
 {
     class AliasAddCommand : ICommand
     {
-        public Command CreateCommand()
+        public Command GetCommand()
         {
             var command = new Command("add", description: "Add alias.");
             command.AddArgument(new Argument<string>("alias"));

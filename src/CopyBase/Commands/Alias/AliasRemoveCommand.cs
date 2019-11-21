@@ -9,7 +9,7 @@ namespace CopyBase.Commands.Alias
 {
     class AliasRemoveCommand : ICommand
     {
-        public Command CreateCommand()
+        public Command GetCommand()
         {
             var command = new Command("remove", description: "Remove alias.");
             command.AddArgument(new Argument<string>("alias"));
