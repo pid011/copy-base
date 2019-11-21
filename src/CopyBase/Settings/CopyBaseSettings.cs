@@ -44,9 +44,9 @@ namespace CopyBase.Settings
         public override string ToString()
         {
             StringBuilder output = new StringBuilder();
-            output.AppendLine($"[{Alias}]");
-            output.AppendLine($"\tBase file path: {Element.BaseFilePath}");
-            output.AppendLine($"\tTarget file path: {Element.TargetFilePath}");
+            output.AppendLine($"- [{Alias}]");
+            output.AppendLine($"  Base file path: [{Element.BaseFilePath}]");
+            output.AppendLine($"  Target file path: [{Element.TargetFilePath}]");
             return output.ToString();
         }
     }

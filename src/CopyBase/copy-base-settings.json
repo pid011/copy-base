@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "Alias": "ps",
+    "Element": {
+      "BaseFilePath": "D:\\workspace\\PSBaseCode.cs",
+      "TargetFilePath": "D:\\workspace\\ProblemSolving\\Program.cs"
+    }
+  }
+]
