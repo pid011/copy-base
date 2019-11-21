@@ -16,5 +16,31 @@ namespace CopyBase
 
             Console.WriteLine(builder.ToString());
         }
+
+        public static bool UserChoiceProcess(string msg)
+        {
+            Console.WriteLine(msg);
+            bool chooseYes = false;
+            bool chooseNo = false;
+
+            while (!chooseYes && !chooseNo)
+            {
+                Console.Write("(y/n): ");
+                var choose = Console.ReadLine().ToLower();
+                switch (choose)
+                {
+                    case "y":
+                    case "yes":
+                        chooseYes = true;
+                        break;
+
+                    case "n":
+                    case "no":
+                        chooseNo = true;
+                        break;
+                }
+            }
+            return chooseYes;
+        }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.CommandLine.Invocation;
+using System.IO;
 using System.Text;
 
 namespace CopyBase.Commands
@@ -18,7 +19,7 @@ namespace CopyBase.Commands
             return command;
         }
 
-        public int HandleCommand(string alias)
+        private int HandleCommand(string alias)
         {
             if (string.IsNullOrWhiteSpace(alias))
             {
@@ -34,9 +35,17 @@ namespace CopyBase.Commands
                 return -1;
             }
 
-            var baseFilePath = setting.Element.BaseFilePath;
-            var targetFilePath = setting.Element.TargetFilePath;
-            // TODO: Overwrite file
+            Console.WriteLine(setting.ToString());
+            bool choose = Tools.UserChoiceProcess("Are you sure you want to copy the base code?");
+            if (choose)
+            {
+                File.Copy(setting.Element.BaseFilePath, setting.Element.TargetFilePath, overwrite: true);
+                Console.WriteLine("Copy complete.");
+            }
+            else
+            {
+                Console.WriteLine("Copy canceled.");
+            }
 
             return 0;
         }

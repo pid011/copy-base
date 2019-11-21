@@ -21,7 +21,7 @@ namespace CopyBase.Commands.Alias
             return command;
         }
 
-        public int HandleSetupCommand(string alias, string baseFilePath, string targetFilePath)
+        private int HandleSetupCommand(string alias, string baseFilePath, string targetFilePath)
         {
             if (string.IsNullOrWhiteSpace(alias))
             {

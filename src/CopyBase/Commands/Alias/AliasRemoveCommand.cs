@@ -17,7 +17,7 @@ namespace CopyBase.Commands.Alias
             return command;
         }
 
-        public int HandleSetupCommand(string alias)
+        private int HandleSetupCommand(string alias)
         {
             CopyBaseSettings.LoadFromFile();
             int idx = CopyBaseSettings.Items.FindIndex(x => x.Alias == alias);

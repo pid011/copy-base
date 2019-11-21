@@ -13,6 +13,12 @@ namespace CopyBase.Settings
 
         public static void LoadFromFile()
         {
+            if (!File.Exists(SettingsFileName))
+            {
+                Items = new List<CopyBasePathItem>();
+                SaveToFile();
+                return;
+            }
             var json = File.ReadAllText(SettingsFileName);
             Items = JsonConvert.DeserializeObject<List<CopyBasePathItem>>(json);
         }
