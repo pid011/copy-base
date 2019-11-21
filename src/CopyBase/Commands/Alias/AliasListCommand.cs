@@ -21,7 +21,9 @@ namespace CopyBase.Commands.Alias
             CopyBaseSettings.LoadFromFile();
             StringBuilder aliasesOuput = new StringBuilder();
             CopyBaseSettings.Items.ForEach(item => aliasesOuput.AppendLine(item.ToString()));
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(aliasesOuput.ToString());
+            Console.ResetColor();
             return 0;
         }
     }

@@ -34,8 +34,9 @@ namespace CopyBase.Commands
                 Console.WriteLine("No alias matched");
                 return -1;
             }
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(setting.ToString());
+            Console.ResetColor();
             bool choose = Tools.UserChoiceProcess("Are you sure you want to copy the base code?");
             if (choose)
             {

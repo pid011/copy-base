@@ -5,5 +5,12 @@
       "BaseFilePath": "D:\\workspace\\PSBaseCode.cs",
       "TargetFilePath": "D:\\workspace\\ProblemSolving\\Program.cs"
     }
+  },
+  {
+    "Alias": "test",
+    "Element": {
+      "BaseFilePath": "D:\\workspace\\PSBaseCode.cs",
+      "TargetFilePath": "D:\\workspace\\ProblemSolving\\Program.cs"
+    }
   }
 ]
