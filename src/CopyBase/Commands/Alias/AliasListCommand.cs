@@ -1,13 +1,13 @@
 ﻿using CopyBase.Settings;
+
 using System;
-using System.Collections.Generic;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.Text;
 
 namespace CopyBase.Commands.Alias
 {
-    class AliasListCommand : ICommand
+    internal class AliasListCommand : ICommand
     {
         public Command GetCommand()
         {

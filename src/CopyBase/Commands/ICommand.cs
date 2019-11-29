@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.CommandLine;
-using System.Text;
+﻿using System.CommandLine;
 
 namespace CopyBase.Commands
 {
-    interface ICommand
+    internal interface ICommand
     {
         public Command GetCommand();
     }

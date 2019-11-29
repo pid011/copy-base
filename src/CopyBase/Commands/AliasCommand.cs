@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CopyBase.Commands.Alias;
+
 using System.CommandLine;
-using System.Text;
-using CopyBase.Commands.Alias;
 
 namespace CopyBase.Commands
 {
-    class AliasCommand : ICommand
+    internal class AliasCommand : ICommand
     {
         public Command GetCommand()
         {

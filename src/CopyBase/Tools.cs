@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace CopyBase
 {
-    static class Tools
+    internal static class Tools
     {
         public static void DisplayTextLine(int repeat)
         {
