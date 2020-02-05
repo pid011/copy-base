@@ -28,9 +28,9 @@ Example:
 
 ```
 # Add alias
-dotnet run alias add <alias-name> <base-file-path> <target-file-path>
+dotnet run -- alias add <alias-name> <base-file-path> <target-file-path>
 
 # Copy file
-dotnet run copy <alias-name>
+dotnet run -- copy <alias-name>
 ```
 
