@@ -4,6 +4,8 @@ using System;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 
+using static CopyBase.Tools;
+
 namespace CopyBase.Commands.Alias
 {
     internal class AliasRemoveCommand : ICommand
@@ -22,14 +24,14 @@ namespace CopyBase.Commands.Alias
             int idx = CopyBaseSettings.Items.FindIndex(x => x.Alias == alias);
             if (idx == -1)
             {
-                Console.WriteLine($"No alias matches [{alias}].");
+                PrintMessage($"No alias matches [{alias}].", ConsoleColor.Red);
                 return -1;
             }
 
             CopyBaseSettings.Items.RemoveAt(idx);
             CopyBaseSettings.SaveToFile();
 
-            Console.WriteLine("Alias remove completed!");
+            PrintMessage("Alias remove completed!");
             return 0;
         }
     }

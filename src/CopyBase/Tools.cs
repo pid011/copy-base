@@ -13,12 +13,12 @@ namespace CopyBase
                 builder.Append('=');
             }
 
-            Console.WriteLine(builder.ToString());
+            PrintMessage(builder.ToString());
         }
 
         public static bool UserChoiceProcess(string msg)
         {
-            Console.WriteLine(msg);
+            PrintMessage(msg);
             bool chooseYes = false;
             bool chooseNo = false;
 
@@ -40,6 +40,23 @@ namespace CopyBase
                 }
             }
             return chooseYes;
+        }
+
+        public static void PrintMessage()
+        {
+            Console.WriteLine();
+        }
+
+        public static void PrintMessage(string msg)
+        {
+            Console.WriteLine(msg);
+        }
+
+        public static void PrintMessage(string msg, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            PrintMessage(msg);
+            Console.ResetColor();
         }
     }
 }

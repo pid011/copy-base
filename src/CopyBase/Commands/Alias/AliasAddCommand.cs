@@ -5,6 +5,8 @@ using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
 
+using static CopyBase.Tools;
+
 namespace CopyBase.Commands.Alias
 {
     internal class AliasAddCommand : ICommand
@@ -25,17 +27,17 @@ namespace CopyBase.Commands.Alias
             //TODO: 중복 이름 처리
             if (string.IsNullOrWhiteSpace(alias))
             {
-                Console.WriteLine("Cannot specify alias.");
+                PrintMessage("Cannot specify alias.", ConsoleColor.Red);
                 return -1;
             }
             if (string.IsNullOrWhiteSpace(baseFilePath) || !File.Exists(baseFilePath))
             {
-                Console.WriteLine("The base file doesn't exist.");
+                PrintMessage("The base file doesn't exist.", ConsoleColor.Red);
                 return -1;
             }
             if (string.IsNullOrWhiteSpace(targetFilePath) || !File.Exists(targetFilePath))
             {
-                Console.WriteLine("The target file doesn't exist.");
+                PrintMessage("The target file doesn't exist.", ConsoleColor.Red);
                 return -1;
             }
 
@@ -43,11 +45,8 @@ namespace CopyBase.Commands.Alias
             var list = CopyBaseSettings.Items.Find(x => x.Alias == alias);
             if (list != null)
             {
-                Console.WriteLine("An alias with the same name already exists.");
-                // TODO: Tools 클래스에 컬러 지정해서 출력하는 메서드 추가
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine(list.ToString());
-                Console.ResetColor();
+                PrintMessage("An alias with the same name already exists.\n", ConsoleColor.Red);
+                PrintMessage(list.ToString(), ConsoleColor.Yellow);
                 return -1;
             }
 
@@ -62,7 +61,7 @@ namespace CopyBase.Commands.Alias
             });
             CopyBaseSettings.SaveToFile();
 
-            Console.WriteLine("Alias add completed!");
+            PrintMessage("Alias add completed!");
 
             return 0;
         }

@@ -5,6 +5,8 @@ using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
 
+using static CopyBase.Tools;
+
 namespace CopyBase.Commands
 {
     internal class CopyCommand : ICommand
@@ -23,7 +25,7 @@ namespace CopyBase.Commands
             // TODO: -y 옵션 추가
             if (string.IsNullOrWhiteSpace(alias))
             {
-                Console.WriteLine("Cannot specific alias name.");
+                PrintMessage("Cannot specific alias name.", ConsoleColor.Red);
                 return -1;
             }
 
@@ -31,21 +33,20 @@ namespace CopyBase.Commands
             var setting = CopyBaseSettings.Items.Find(item => item.Alias == alias);
             if (setting == null)
             {
-                Console.WriteLine("No alias matched");
+                PrintMessage("No alias matched", ConsoleColor.Red);
                 return -1;
             }
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(setting.ToString());
-            Console.ResetColor();
-            bool choose = Tools.UserChoiceProcess("Are you sure you want to copy the base code?");
+            PrintMessage(setting.ToString(), ConsoleColor.Yellow);
+
+            bool choose = UserChoiceProcess("Are you sure you want to copy the base code?");
             if (choose)
             {
                 File.Copy(setting.Element.BaseFilePath, setting.Element.TargetFilePath, overwrite: true);
-                Console.WriteLine("Copy complete.");
+                PrintMessage("Copy complete.");
             }
             else
             {
-                Console.WriteLine("Copy canceled.");
+                PrintMessage("Copy canceled.");
             }
 
             return 0;
