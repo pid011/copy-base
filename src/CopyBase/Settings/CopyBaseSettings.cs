@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
-
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace CopyBase.Settings
@@ -12,22 +14,47 @@ namespace CopyBase.Settings
 
         public static List<CopyBasePathItem> Items { get; set; }
 
+
+        public static string SettingsFilePath
+        {
+            get
+            {
+                if (settingsFilePath == null)
+                {
+                    settingsFilePath = GetSettingsFilePath();
+                }
+
+                return settingsFilePath;
+            }
+        }
+
+        private static string settingsFilePath;
+
         public static void LoadFromFile()
         {
-            if (!File.Exists(SettingsFileName))
+            if (!File.Exists(SettingsFilePath))
             {
                 Items = new List<CopyBasePathItem>();
                 SaveToFile();
                 return;
             }
-            var json = File.ReadAllText(SettingsFileName);
+            var json = File.ReadAllText(SettingsFilePath);
             Items = JsonConvert.DeserializeObject<List<CopyBasePathItem>>(json);
         }
 
         public static void SaveToFile()
         {
             var json = JsonConvert.SerializeObject(Items, Formatting.Indented);
-            File.WriteAllText(SettingsFileName, json);
+            File.WriteAllText(SettingsFilePath, json);
+        }
+
+        private static string GetSettingsFilePath()
+        {
+            var executeLocation = Assembly.GetExecutingAssembly().Location;
+            Debug.WriteLine($"executeLocation is {Assembly.GetExecutingAssembly().Location}");
+            var dir = Directory.GetParent(executeLocation).FullName;
+            Debug.WriteLine($"dir name is {Assembly.GetExecutingAssembly().Location}");
+            return Path.Combine(dir, SettingsFileName);
         }
     }
 
@@ -45,9 +72,9 @@ namespace CopyBase.Settings
         public override string ToString()
         {
             StringBuilder output = new StringBuilder();
-            output.AppendLine($"- [{Alias}]");
-            output.AppendLine($"  Base file path: [{Element.BaseFilePath}]");
-            output.AppendLine($"  Target file path: [{Element.TargetFilePath}]");
+            output.AppendLine($"- [{this.Alias}]");
+            output.AppendLine($"  Base file path: [{this.Element.BaseFilePath}]");
+            output.AppendLine($"  Target file path: [{this.Element.TargetFilePath}]");
             return output.ToString();
         }
     }

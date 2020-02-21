@@ -22,6 +22,7 @@ namespace CopyBase.Commands.Alias
 
         private int HandleSetupCommand(string alias, string baseFilePath, string targetFilePath)
         {
+            //TODO: 중복 이름 처리
             if (string.IsNullOrWhiteSpace(alias))
             {
                 Console.WriteLine("Cannot specify alias.");
