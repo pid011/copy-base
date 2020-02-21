@@ -15,6 +15,8 @@ namespace CopyBase
                 new CopyCommand().GetCommand(),
                 new AliasCommand().GetCommand()
             };
+
+            rootCommand.Name = "copybase";
             return await rootCommand.InvokeAsync(args).ConfigureAwait(false);
         }
     }
