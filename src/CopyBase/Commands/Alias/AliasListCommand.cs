@@ -22,7 +22,6 @@ namespace CopyBase.Commands.Alias
 
         private int HandleSetupCommand()
         {
-            // TODO: 생성된 alias가 없을 경우 따로 메시지 출력
             CopyBaseSettings.LoadFromFile();
 
             if (CopyBaseSettings.Items.Count == 0)

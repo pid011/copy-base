@@ -22,7 +22,6 @@ namespace CopyBase.Commands
 
         private int HandleCommand(string alias)
         {
-            // TODO: -y 옵션 추가
             if (string.IsNullOrWhiteSpace(alias))
             {
                 PrintMessage("Cannot specific alias name.", ConsoleColor.Red);
