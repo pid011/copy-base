@@ -40,6 +40,17 @@ namespace CopyBase.Commands.Alias
             }
 
             CopyBaseSettings.LoadFromFile();
+            var list = CopyBaseSettings.Items.Find(x => x.Alias == alias);
+            if (list != null)
+            {
+                Console.WriteLine("An alias with the same name already exists.");
+                // TODO: Tools 클래스에 컬러 지정해서 출력하는 메서드 추가
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(list.ToString());
+                Console.ResetColor();
+                return -1;
+            }
+
             CopyBaseSettings.Items.Add(new CopyBasePathItem()
             {
                 Alias = alias,
