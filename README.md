@@ -43,17 +43,17 @@ Set-Alias cb CopyBase.exe
 
 ```
 copybase:
-You can work quickly overwrite the target file into the base file.
+  You can work quickly overwrite the target file into the base file.
 
 Usage:
-copybase [options][command]
+  copybase [options] [command]
 
 Options:
---version Display version information
+  --version    Display version information
 
 Commands:
-copy <alias>
-alias
+  copy <alias>
+  alias
 ```
 
 Example:
@@ -61,10 +61,10 @@ Example:
 ```
 # Add alias
 
-dotnet run -- alias add <alias-name> <base-file-path> <target-file-path>
+copybase alias add <alias-name> <base-file-path> <target-file-path>
 
 # Copy file
 
-dotnet run -- copy <alias-name>
+copybase copy <alias-name>
 
 ```
