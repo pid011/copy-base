@@ -1,4 +1,7 @@
-﻿using CopyBase.Settings;
+﻿// Copyright (c) Sepi. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using CopyBase.Settings;
 
 using System;
 using System.CommandLine;
@@ -29,7 +32,7 @@ namespace CopyBase.Commands
             }
 
             CopyBaseSettings.LoadFromFile();
-            var setting = CopyBaseSettings.Items.Find(item => item.Alias == alias);
+            CopyBasePathItem setting = CopyBaseSettings.Items.Find(item => item.Alias == alias);
             if (setting == null)
             {
                 PrintMessage("No alias matched", ConsoleColor.Red);

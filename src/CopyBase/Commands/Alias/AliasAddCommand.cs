@@ -1,4 +1,7 @@
-﻿using CopyBase.Settings;
+﻿// Copyright (c) Sepi. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using CopyBase.Settings;
 
 using System;
 using System.CommandLine;
@@ -41,7 +44,7 @@ namespace CopyBase.Commands.Alias
             }
 
             CopyBaseSettings.LoadFromFile();
-            var list = CopyBaseSettings.Items.Find(x => x.Alias == alias);
+            CopyBasePathItem list = CopyBaseSettings.Items.Find(x => x.Alias == alias);
             if (list != null)
             {
                 PrintMessage("An alias with the same name already exists.\n", ConsoleColor.Red);

@@ -1,4 +1,7 @@
-﻿using CopyBase.Commands;
+﻿// Copyright (c) Sepi. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using CopyBase.Commands;
 
 using System.CommandLine;
 using System.CommandLine.Invocation;
