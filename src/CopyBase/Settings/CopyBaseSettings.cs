@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
+
 using Newtonsoft.Json;
 
 namespace CopyBase.Settings
@@ -21,16 +22,16 @@ namespace CopyBase.Settings
         {
             get
             {
-                if (settingsFilePath == null)
+                if (_settingsFilePath == null)
                 {
-                    settingsFilePath = GetSettingsFilePath();
+                    _settingsFilePath = GetSettingsFilePath();
                 }
 
-                return settingsFilePath;
+                return _settingsFilePath;
             }
         }
 
-        private static string settingsFilePath;
+        private static string _settingsFilePath;
 
         public static void LoadFromFile()
         {
@@ -74,9 +75,9 @@ namespace CopyBase.Settings
         public override string ToString()
         {
             StringBuilder output = new StringBuilder();
-            output.AppendLine($"- [{this.Alias}]");
-            output.AppendLine($"  Base file path: [{this.Element.BaseFilePath}]");
-            output.AppendLine($"  Target file path: [{this.Element.TargetFilePath}]");
+            output.AppendLine($"- [{Alias}]");
+            output.AppendLine($"  Base file path: [{Element.BaseFilePath}]");
+            output.AppendLine($"  Target file path: [{Element.TargetFilePath}]");
             return output.ToString();
         }
     }
