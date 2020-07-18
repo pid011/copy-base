@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="System.CommandLine.Experimental" Version="0.3.0-alpha.19573.2" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20303.1" />
   </ItemGroup>
 
 </Project>
